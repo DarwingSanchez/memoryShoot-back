@@ -1,24 +1,21 @@
-require('./database')
-const express = require('express');
-let cors = require('cors')
-const env = require('dotenv')
-const morgan = require("morgan")
+require("./database");
+const express = require("express");
+const cors = require("cors");
+const env = require("dotenv");
+const morgan = require("morgan");
 
-env.config()
+env.config();
 const app = express();
+const port = process.env.PORT;
 
-app.use(cors({origin:['http://localhost:4200']}));
-
-const PORT = process.env.PORT
+app.use(cors({ origin: ["http://localhost:4200"] }));
 
 app.use(express.json());
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 /* Rutas */
 ///
+app.use("/api/user", require("./routes/users.routes"));
 
-app.listen(PORT, () => console.log(`Ejecutando en port ${PORT}`))
-
-
-
+app.listen(port, () => console.log(`Ejecutando en port ${port}`));
