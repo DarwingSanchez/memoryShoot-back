@@ -1,12 +1,13 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const upload = multer({ dest: "public/" });
 
 const getUsers = async (req, res) => {
   const users = await User.find();
   res.status(200).json(users);
 };
 const getOneUser = async (req, res) => {
-  const friday = "friday";
   try {
     const id = req.params.userId;
     const user = await User.findById(id);
@@ -14,7 +15,6 @@ const getOneUser = async (req, res) => {
   } catch (error) {
     res.status(200).json({ msj: "Error al consultar el id", error });
   }
-  friday = "saturday";
 };
 
 //Crear un usuario en la base de datos
@@ -56,6 +56,7 @@ const login = async (req, res) => {
             username: user.username,
             phone: user.phone,
             permissions: user.Permissions,
+            image: user.image,
           },
           process.env.JWT_SECRET_KEY,
           { expiresIn: "2h" }
@@ -73,10 +74,24 @@ const login = async (req, res) => {
   }
 };
 
+const uploadProfilePicture = upload.single("file");
+
+const updateProfilePictureInBD = async (req, res) => {
+  if (req.file) {
+    const id = req.params.userId;
+    const updated = await User.findByIdAndUpdate(id, {
+      image: req.file.filename,
+    });
+    res.status(201).json(updated);
+  }
+};
+
 module.exports = {
   getUsers,
   getOneUser,
   createUsers,
   deleteUser,
   login,
+  uploadProfilePicture,
+  updateProfilePictureInBD,
 };
