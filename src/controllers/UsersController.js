@@ -34,7 +34,7 @@ const createUsers = async (req, res) => {
 const deleteUser = async (req, res) => {
   const id = req.params.userId;
   await User.findByIdAndDelete(id);
-  res.status(200).json({ msj: "Usurio eliminado" });
+  res.status(200).json({ msj: "Usuario eliminado" });
 };
 
 const login = async (req, res) => {
