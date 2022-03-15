@@ -23,6 +23,7 @@ app.use('/api/visits', require('./routes/visits.routes'))
 app.use('/api/mailer', require('./routes/mailer.routes'))
 app.use('/api/sales', require('./routes/sales.routes'))
 app.use('/api/orders', require('./routes/orders.routes'))
+//app.use('/api/product', require('./routes/product.routes'))
 ///
 app.use("/api/user", require("./routes/users.routes"));
 
