@@ -15,10 +15,9 @@ const getSales = async (req, res) =>{
 }
 const createSale = async (req, res) => {
     try {
-        const body = req.body 
-        console.log(body);
+        const body = req.body
         const sale = new Sale(body)
-        if(!body.productID ||!body.totalPrice || !body.created){
+        if(!body.productID || !body.totalPrice || !body.created){
             throw new Error('There is one or more empty field')
         }
         await sale.save()
@@ -35,7 +34,7 @@ const getOneSale = async (req, res) => {
         if(sale){
             res.status(201).json(sale)
         }else{
-            throw new Error('Sale not found')
+            throw new Error('Sale not found')    
         }
     } catch (error) {
         res.status(404).json(error.message)

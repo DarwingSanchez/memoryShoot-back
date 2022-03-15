@@ -6,8 +6,8 @@ const orderSchema = new Schema(
         saleID: mongoose.Types.ObjectId,
         address: String,
         city: String,
-        sate: String,
-        status: Boolean,
+        state: String,
+        status:Boolean,
         created: String,
     }, 
     {

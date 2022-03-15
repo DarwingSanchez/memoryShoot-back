@@ -12,4 +12,5 @@ router.post(
   userController.updateProfilePictureInBD
 );
 router.post("/login", userController.login);
+
 module.exports = router;
