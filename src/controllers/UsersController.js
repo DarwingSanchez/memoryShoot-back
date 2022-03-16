@@ -86,6 +86,18 @@ const updateProfilePictureInBD = async (req, res) => {
   }
 };
 
+const uploadImages = upload.array("files");
+
+const updateImages = async (req, res) => {
+  if (req.files) {
+    const id = req.params.userId;
+    const updated = await User.findByIdAndUpdate(id, {
+      images: req.files.map((file) => file.filename),
+    });
+    res.status(201).json(updated);
+  }
+};
+
 module.exports = {
   getUsers,
   getOneUser,
@@ -94,4 +106,6 @@ module.exports = {
   login,
   uploadProfilePicture,
   updateProfilePictureInBD,
+  uploadImages,
+  updateImages,
 };

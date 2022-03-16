@@ -11,5 +11,10 @@ router.post(
   userController.uploadProfilePicture,
   userController.updateProfilePictureInBD
 );
+router.post(
+  "/save-images/:userId",
+  userController.uploadImages,
+  userController.updateImages
+);
 router.post("/login", userController.login);
 module.exports = router;

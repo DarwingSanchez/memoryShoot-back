@@ -15,6 +15,10 @@ const userSchema = new Schema(
       verified: { type: Boolean, required: false },
     },
     created: { type: String, required: true },
+    images: {
+      type: Array,
+      required: false,
+    },
   },
   {
     versionKey: false,
