@@ -28,7 +28,7 @@ const createUsers = async (req, res) => {
     //throw
   } catch (error) {
     console.log(error);
-    res.status(203).json({ status: "Usuario no creado correctamente", error });
+    res.status(403).json({ status: "Usuario no creado correctamente", error });
   }
 };
 
