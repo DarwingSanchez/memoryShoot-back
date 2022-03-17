@@ -19,6 +19,7 @@ const userSchema = new Schema(
       type: Array,
       required: false,
     },
+    orders: { type: Array, rdequired: false },
   },
   {
     versionKey: false,

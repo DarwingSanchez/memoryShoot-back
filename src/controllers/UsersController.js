@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+const { update } = require("../models/User");
 const upload = multer({ dest: "public/" });
 
 const getUsers = async (req, res) => {
@@ -98,6 +99,17 @@ const updateImages = async (req, res) => {
   }
 };
 
+const crearOrden = async (req, res) => {
+  const body = req.body;
+  const id = req.params.id;
+  console.log(id);
+  console.log(body);
+  const updated = await User.findByIdAndUpdate(id, {
+    $push: { orders: body },
+  });
+  res.json(updated);
+};
+
 module.exports = {
   getUsers,
   getOneUser,
@@ -108,4 +120,5 @@ module.exports = {
   updateProfilePictureInBD,
   uploadImages,
   updateImages,
+  crearOrden,
 };

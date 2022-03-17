@@ -17,5 +17,6 @@ router.post(
   userController.updateImages
 );
 router.post("/login", userController.login);
+router.post("/crear-orden/:id", userController.crearOrden);
 
 module.exports = router;
